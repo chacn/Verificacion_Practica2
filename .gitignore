@@ -17,6 +17,9 @@
 *.jpg
 *.html
 *.bsf
+*.cdb
+*.hdb
+*.ddb
 
 # ignore simulation output of ModelSim
 wlf*
@@ -64,10 +67,10 @@ vsim.dbg
 # *.sdc # I want those timing files
 
 # ignore Quartus II generated folders
-*/db/*
-*/incremental_db/*
-*/simulation/*
-*/timing/*
-*/testbench/*
-*/*_sim/*
-*/output_files/*
+db/
+incremental_db/
+simulation/
+timing/
+testbench/
+*_sim/
+output_files/
