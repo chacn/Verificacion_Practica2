@@ -166,7 +166,7 @@ single_port_rom_input
 
 //--------------------------Output assignments------------------------------
 	assign  start_out = control.start;
-	assign  error = ~opCode_R_out[1] & opCode_R_out[0] & operand_1[WORD_LENGHT-1] | (~|operand_2 & ~opCode_R_out[1] & ~opCode_R_out[0]);
+	assign  error = ~opCode_R_out[1] & opCode_R_out[0] & sign_1_out | (~|operand_2 & ~opCode_R_out[1] & ~opCode_R_out[0]);
 	assign  load_x_out = control.load_1;
 	assign  load_y_out = control.load_2;
 	

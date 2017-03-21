@@ -193,11 +193,11 @@ typedef struct packed{
 	#(.WORD_LENGHT(WORD_LENGHT))    MUX_TO_RESULT_REGISTER
 	(
 	// Input Ports
-	.Selector(input_opcode_wire),
+	.Selector(input_opcode_wire | {2{error_flag}}),
 	.Data_0(divider_result_wire),
 	.Data_1(sqrt_result_wire),
 	.Data_2(multiplier_result_wire),
-	.Data_3(0),
+	.Data_3({WORD_LENGHT{1'b1}}),
 	// Output Ports
 	.Mux_Output_log(mux_result_out_wire)
 
@@ -252,7 +252,7 @@ typedef struct packed{
 		.reset(rst),
 		.Data_Input(mux_remainder_out_wire),
 		.enable(control.multiplier.ready),
-		.sync_reset(input_error_wire),
+		.sync_reset(input_error_wire | (~input_opcode_wire[0] & input_opcode_wire[1])),
 
 		// Output Ports
 		.Data_Output(residue)
@@ -273,5 +273,5 @@ typedef struct packed{
 		.Data_Output(ready_flag)
 	);
 //---------------------------Outputs--------------------------------------
-		assign error_flag = input_error_wire;
+		assign error_flag = input_error_wire| |multiplier_result_wire[2*WORD_LENGHT-1:WORD_LENGHT-1];
 endmodule

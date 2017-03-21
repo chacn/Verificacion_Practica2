@@ -47,7 +47,7 @@ initial begin // operand generator
 	#24 start = 1;
 	#10 start = 0;
 	#10 opcode = 2'b00;	    
-	    operand = 16'b01111111111;
+	    operand = 500;
 	    load = 1;
 	#10 load=0;
 	#15 operand = 35;
@@ -60,14 +60,14 @@ initial begin // operand generator
 	#10 operand = 150;
 	    load = 1;
 	#10 load=0;
-	#15 operand = 16'b01111111111;
+	#15 operand = 100;
 	    load = 1;
 	#10 load=0;
 
 	#100 start = 1;
 	     opcode = 2'b01;
 	#10 start = 0;
-	#10 operand = -150;
+	#10 operand = 150;
 	    load = 1;
 	#10 load=0;
   
