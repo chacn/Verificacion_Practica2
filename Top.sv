@@ -1,5 +1,5 @@
 module Top(
-	
+
 	// Input Ports
 	input clk,
 	input rst,
@@ -8,7 +8,7 @@ module Top(
 	input push_in,
 	input [15:0]data_in,
 	input [1:0]opcode,
-	
+
 	// Output Ports
 	output [15:0]result,
 	output [15:0]residue,
@@ -57,17 +57,17 @@ MSD_MODULE
   .load_x(load_x),
   .load_y(load_y)
   );
-  
+
  //-------------------MUX RESULTADO O RESIDUO-----------------------------
- Multiplexers 
-#(.WORD_LENGHT(16))
+ Multiplexers
+#(.WORD_LENGHT(16))     MUX_RESULT_RESIDUE
 
 (
 	// Input Ports
 	.Selector(~push_in),
 	.Data_0(outputResult_wire),
 	.Data_1(outputResidue_wire),
-	
+
 	// Output Ports
 	.Mux_Output_log(out_MUX2BCD_wire)
 

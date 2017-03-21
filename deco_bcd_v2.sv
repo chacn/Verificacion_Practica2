@@ -6,7 +6,7 @@
 	//input [Word_Length-1:0] Data_Input,
 
 	// Output Ports
-	output [3:0] out [nDisplays-1:0]
+	output logic [3:0] out [nDisplays-1:0]
 );
 
 logic [input_lenght + (nDisplays*4) -1 : 0] registro_corrimiento;		//Se crea un wire (no es registro) para realizar los corrimientos y sumas en un solo bus

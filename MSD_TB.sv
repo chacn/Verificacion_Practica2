@@ -43,57 +43,63 @@ initial begin // reset generator
 	#4 reset = 1;
 end
 
-initial begin // operand generator
+
+initial begin // Raiz
 	#24 start = 1;
+      opcode = 2'b01;
 	#10 start = 0;
-	#10 opcode = 2'b00;	    
-	    operand = 500;
-	    load = 1;
-	#10 load=0;
-	#15 operand = 35;
+	#10 operand = 270;
 	    load = 1;
 	#10 load=0;
 
 	#150 start = 1;
-	     opcode = 2'b10;
-	#10 start = 0;
-	#10 operand = 150;
-	    load = 1;
-	#10 load=0;
-	#15 operand = 100;
-	    load = 1;
-	#10 load=0;
-
-	#100 start = 1;
 	     opcode = 2'b01;
 	#10 start = 0;
-	#10 operand = 150;
+	#10 operand = -270;
 	    load = 1;
 	#10 load=0;
-  
 end
-//initial begin // reset generator
-//	#0 start = 0;
-//	#100 start = 1;
-//      opcode = 0;
-//  #4 start = 0;
-//	#(WORD_LENGHT*10) start = 1;
-//      opcode = 1;
-//	#4 start = 0;
-//  #(WORD_LENGHT*10) start = 1;
-//      opcode = 2;
-//  #4 start = 0;
-//end
 
-/*********************************************************/
-// initial begin // enable
-//     #0 start = 0;
-//     #18 start = 1;
-//     #6 start = 0;
+// initial begin // Multiplicacion
+// 	#24 start = 1;
+//       opcode = 2'b10;
+// 	#10 start = 0;
+// 	#10 operand = 270;
+// 	    load = 1;
+// 	#10 load=0;
+// 	#15 operand = 50;
+// 	    load = 1;
+// 	#10 load=0;
 //
+// 	#150 start = 1;
+// 	     opcode = 2'b10;
+// 	#10 start = 0;
+// 	#10 operand = -270;
+// 	    load = 1;
+// 	#10 load=0;
+// 	#15 operand = 50;
+// 	    load = 1;
+// 	#10 load=0;
 //
-//     #70 start = 1;
-//     #6 start = 0;
+// 	#100 start = 1;
+// 	     opcode = 2'b10;
+// 	#10 start = 0;
+//   #10 operand = -270;
+// 	    load = 1;
+// 	#10 load=0;
+// 	#15 operand = -50;
+// 	    load = 1;
+// 	#10 load=0;
+//
+//   #100 start = 1;
+//        opcode = 2'b10;
+//   #10 start = 0;
+//   #10 operand = 500;
+//       load = 1;
+//   #10 load=0;
+//   #15 operand = 200;
+//       load = 1;
+//   #10 load=0;
+//
 // end
-
-endmodule
+endmodule

@@ -62,9 +62,9 @@ typedef struct packed{
   bit [WORD_LENGHT-1:0]mux_remainder_out_wire;
 //-------------------------------a2 wires---------------------------------------
 	bit [WORD_LENGHT-1:0]binary_2_a2_result_wire;
-  
-  
-  
+
+
+
 //--------------------------Input state machine---------------------------
  input_control
 #(.WORD_LENGHT(WORD_LENGHT))			INPUT_CONTROL_MODULE
@@ -75,7 +75,7 @@ typedef struct packed{
 	.opCode(opcode),
 	.start(start),
 	.load(load),
-	
+
 	.operand_1(input_operand_1_wire),
 	.sign_1_out(input_sign_1),
 	.operand_2(input_operand_2_wire),
@@ -86,7 +86,7 @@ typedef struct packed{
 	.start_out(input_start_wire),
 	.error(input_error_wire)
 	);
-	
+
 
 //-------------------------Control unit----------------------------
   control
@@ -101,8 +101,8 @@ typedef struct packed{
     //Outputs
   	.control(control)
   );
-    
-  
+
+
 //--------------------------Multiplier unit--------------------------
   boot_multiplier
   #(.WORD_LENGHT(WORD_LENGHT))         MULTIPLIER_MODULE
@@ -234,7 +234,7 @@ typedef struct packed{
 	#(.WORD_LENGHT(WORD_LENGHT))    MUX_TO_REMAINDER_REGISTER
 	(
 		// Input Ports
-		.Selector(input_opcode_wire[0]),		
+		.Selector(input_opcode_wire[0]),
 		.Data_0(divider_residue_wire),
 		.Data_1(sqrt_residue_wire),
 
@@ -257,7 +257,7 @@ typedef struct packed{
 		// Output Ports
 		.Data_Output(residue)
 	);
-	
+
 //----------------------------Ready flag Register----------------------------------
 	 Register
 	#(.Word_Length(1)) READY_FLAG_REGISTER
@@ -273,5 +273,5 @@ typedef struct packed{
 		.Data_Output(ready_flag)
 	);
 //---------------------------Outputs--------------------------------------
-		assign error_flag = input_error_wire| |multiplier_result_wire[2*WORD_LENGHT-1:WORD_LENGHT-1];
+		assign error_flag = input_error_wire| (|multiplier_result_wire[2*WORD_LENGHT-1:WORD_LENGHT-1] & ~input_opcode_wire[0] & input_opcode_wire[1] & control.multiplier.ready);
 endmodule
