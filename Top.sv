@@ -21,8 +21,10 @@ module Top(
 	output [6:0]decenas,
 	output [6:0]centenass,
 	output [6:0]millares,
-	output [6:0]millones
-
+	output [6:0]millones,
+	
+	  //Extra outputs
+  output [15:0]not_registered_result
 );
 
 bit [15:0]outputResult_wire;
@@ -32,7 +34,7 @@ bit new_clk_wire;
 
 //--------------------------Clock divider--------------------------
 Clk_Divider
-#(.Freq_in(50000000), .Freq_out(10)
+#(.Freq_in(50000000), .Freq_out(1)
 	
 )
 (
@@ -64,7 +66,10 @@ MSD_MODULE
   .ready_flag(ready),
   .error_flag(error),
   .load_x(load_x),
-  .load_y(load_y)
+  .load_y(load_y),
+    //Extra outputs
+  .not_registered_result(not_registered_result),
+  .not_registered_residue()
   );
 
  //-------------------MUX RESULTADO O RESIDUO-----------------------------

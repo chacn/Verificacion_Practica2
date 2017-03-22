@@ -16,7 +16,11 @@ module MSD
   output ready_flag,
   output error_flag,
   output load_x,
-  output load_y
+  output load_y,
+  
+  //Extra outputs
+  output [WORD_LENGHT-1:0]not_registered_result,
+  output [WORD_LENGHT-1:0]not_registered_residue
   );
 //-----------------------Type definitions-------------------------------------
 typedef struct packed{
@@ -274,4 +278,6 @@ typedef struct packed{
 	);
 //---------------------------Outputs--------------------------------------
 		assign error_flag = input_error_wire| (|multiplier_result_wire[2*WORD_LENGHT-1:WORD_LENGHT-1] & ~input_opcode_wire[0] & input_opcode_wire[1] & control.multiplier.ready);
+		assign not_registered_result = binary_2_a2_result_wire;
+		assign not_registered_residue = mux_remainder_out_wire;
 endmodule
