@@ -28,13 +28,22 @@ module Top(
 bit [15:0]outputResult_wire;
 bit [15:0]outputResidue_wire;
 bit [15:0]out_MUX2BCD_wire;
-bit PLL_wire;
+bit new_clk_wire;
 
-//-----------------------------------PLL--------------------------
-//PLL	PLL_inst (
-	//.inclk0(clk),
-	//.c0(PLL_wire)
-	//);
+//--------------------------Clock divider--------------------------
+Clk_Divider
+#(.Freq_in(50000000), .Freq_out(10)
+	
+)
+(
+//Input ports
+.clk_FPGA(clk),
+.reset(rst),
+
+//Output ports
+.clk_signal(new_clk_wire)
+
+);
 
 //-----------------------MSD--------------------------------------
 MSD
@@ -42,7 +51,7 @@ MSD
 MSD_MODULE
 (
   //Inputs
-  .clk(clk),
+  .clk(new_clk_wire),
   .rst(rst),
   .start(~start),
   .load(~load),
@@ -78,7 +87,7 @@ MSD_MODULE
 paldisplay Display
 (
 	// Input Ports
-	.clk(clk),
+	.clk(new_clk_wire),
 	.rst(rst),
 	.data_in(out_MUX2BCD_wire),
 
